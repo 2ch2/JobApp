@@ -19,13 +19,14 @@ namespace Shared {
          */
         protected $_user;
 
-        /**
-         * @protected
-         */
-        public function _admin() {
-            if (!$this->user->admin) {
-                throw new Router\Exception\Controller("Not a valid admin user account");
-            }
+        public function noview() {
+            $this->willRenderLayoutView = false;
+            $this->willRenderActionView = false;
+        }
+
+        public function JSONview() {
+            $this->willRenderLayoutView = false;
+            $this->defaultExtension = "json";
         }
 
         /**

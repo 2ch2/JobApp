@@ -13,4 +13,24 @@ class Home extends Controller {
         
     }
 
+    public function about() {
+
+    }
+
+    public function terms() {
+    		
+    }
+
+    public function privacy() {
+    		
+    }
+
+    public function contact() {
+    		
+    }
+
+    public function faq() {
+    		
+    }
+
 }

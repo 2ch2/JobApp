@@ -24,7 +24,7 @@ class Review extends Shared\Model {
     /**
      * @column
      * @readwrite
-     * @type float
+     * @type integer
      */
     protected $_rating;
 

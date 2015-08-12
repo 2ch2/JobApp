@@ -10,7 +10,7 @@ use Framework\Registry as Registry;
 
 class Admin extends Controller {
     
-    protected function sync($model) {
+    public function sync($model) {
         $this->noview();
         $db = Framework\Registry::get("database");
         $db->sync(new $model);

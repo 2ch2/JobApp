@@ -37,6 +37,16 @@ $routes = array(
         "pattern" => "faq",
         "controller" => "home",
         "action" => "faq"
+    ),
+    array(
+        "pattern" => "login",
+        "controller" => "user",
+        "action" => "login"
+    ),
+    array(
+        "pattern" => "signup",
+        "controller" => "user",
+        "action" => "signup"
     )
 );
 

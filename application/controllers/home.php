@@ -1,11 +1,11 @@
 <?php
 
 /**
- * The Default Example Controller Class
+ * The Default Home Controller Class
  *
  * @author Faizan Ayubi
  */
-use Framework\Controller as Controller;
+use Shared\Controller as Controller;
 
 class Home extends Controller {
 

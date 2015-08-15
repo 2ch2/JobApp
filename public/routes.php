@@ -40,13 +40,18 @@ $routes = array(
     ),
     array(
         "pattern" => "login",
-        "controller" => "user",
+        "controller" => "users",
         "action" => "login"
     ),
     array(
         "pattern" => "signup",
-        "controller" => "user",
+        "controller" => "users",
         "action" => "signup"
+    ),
+    array(
+        "pattern" => "logout",
+        "controller" => "users",
+        "action" => "logout"
     )
 );
 

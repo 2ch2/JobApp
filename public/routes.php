@@ -52,6 +52,11 @@ $routes = array(
         "pattern" => "logout",
         "controller" => "users",
         "action" => "logout"
+    ),
+    array(
+        "pattern" => "project/add",
+        "controller" => "jobs",
+        "action" => "create"
     )
 );
 

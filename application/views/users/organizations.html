@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Your Organizations</h1>
+                <div class="panel panel-default">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name</th>
+                                <th>Website</th>
+                                <th>Country</th>
+                                <th>Designation</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {script $i = 1}
+                            {foreach $org in $organizations}
+                            <tr>
+                                <td>{echo $i}</td>
+                                <td>{echo $org->name}</td>
+                                <td>{echo $org->website}</td>
+                                <td>{echo $org->country}</td>
+                                <td>{echo $org->designation}</td>
+                                <td>
+                                    <a href="/users/addOrg/{$org->id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>&nbsp;
+                                </td>
+                            </tr>
+                            {script $i++}
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/users/addOrg/{echo $org->id}" class="text-center btn btn-primary btn-xs"><i class="fa fa-plus"></i> Add Organization</a>
+            </div>
+        </div>
+    </div>
+</div>

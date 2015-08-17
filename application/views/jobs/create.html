@@ -25,7 +25,7 @@
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-2">
                                             <label>Details</label>
-                                            <textarea id="details" name="username" placeholder="Enter the details of the job.." class="form-control" required></textarea>
+                                            <textarea id="details" name="details" placeholder="Enter the details of the job.." class="form-control" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -43,6 +43,18 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-2">
+                                            <label>Skills Required</label>
+                                            {foreach $skill in $skills}
+                                            <div>
+                                                <label><input type="checkbox" name="skills[]" value="{echo $skill->id}"> {echo $skill->name}</label>
+                                            </div>
+                                            {/foreach}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-2">
                                             <label>Budget</label>
                                             <input id="budget" name="budget" type="text" pattern="[0-9]{2,}" placeholder="Place a budget for the project.." class="form-control" required>
                                         </div>
@@ -52,7 +64,7 @@
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-2">
                                             <label>Estimated Time of Completion</label>
-                                            <input id="time" name="time" type="text" pattern="[0-9]{1,}" placeholder="Enter number of months.." class="form-control" required>
+                                            <input id="time" name="time" type="text" pattern="[0-9]{1,}" placeholder="Enter number of days.." class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

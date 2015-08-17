@@ -1,0 +1,60 @@
+<div class="main-container">
+    <div class="container">
+        <div class="row clearfix">
+            {if isset($success)}
+            <div class="alert alert-info alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                Profile Updated Successfully
+            </div>
+            {/if}
+            <h5 class="list-title gray"><strong>Edit Profile!</strong></h5>
+            <form class="form-horizontal" method="post">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <label>Name</label>
+                                    <input id="name" name="name" type="text" autofocus pattern=".{3,45}" maxlength="45" placeholder="Your Name.." value="{echo $user->name}" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <label>Location</label>
+                                    <input id="location" name="location" type="text" autofocus pattern=".{3,45}" maxlength="45" placeholder="Your Location - City etc.." value="{echo $user->location}" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <label>Skills</label>
+                                    {foreach $skill in $skills}
+                                    {script $category = Category::first(array("skill_id = ?" => $skill->id, "property = ?" => "user", "property_id = ?" => $user->id, "live = ?" => true))}
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" name="skills[]" value="{echo $skill->id}" {if ($category)} checked="" {/if}> {echo $skill->name}
+                                        </label>
+                                    </div>
+                                    {/foreach}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <input type="hidden" name="action" value="editProfile">
+                                    <button type="submit" class="btn btn-primary btn-lg">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Jobs Posted</h1>
+                <div class="panel panel-default">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Title</th>
+                                <th>Details</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Budget</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {script $i = 1} {foreach $job in $jobs}
+                            <tr>
+                                <td>{echo $i}</td>
+                                <td>{echo $job->title}</td>
+                                <td>{echo $job->details}</td>
+                                <td>{echo $job->type}</td>
+                                <td>{echo $job->status}</td>
+                                <td>${echo $job->budget}</td>
+                                <td>No. of Days = {echo $job->time}</td>
+                                <td>
+                                    <a href="/jobs/edit/{$job->id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>&nbsp;
+                                </td>
+                            </tr>
+                            {script $i++} {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

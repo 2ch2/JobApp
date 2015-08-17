@@ -7,6 +7,7 @@
  */
 use Shared\Controller as Controller;
 use Framework\RequestMethods as RequestMethods;
+use Framework\ArrayMethods as ArrayMethods;
 use Framework\Registry as Registry;
 
 class Users extends Controller {
@@ -75,6 +76,108 @@ class Users extends Controller {
     public function logout() {
         $this->setUser(false);
         self::redirect("/login");
+    }
+
+    /**
+     * @before _secure, changeLayout
+     */
+    public function edit($id = "") {
+        $view = $this->getActionView();
+        $user = $this->user;
+        $skills = Skill::all(array("live = ?" => true));
+
+        if (RequestMethods::post("action") == "editProfile") {
+            $user->name = RequestMethods::post("name");
+            $user->location = RequestMethods::post("location", "");
+            $user->save();
+            $this->setUser($user);
+
+            $getSkills = RequestMethods::post("skills", []);  // Get all the skills submitted by the user
+            
+            // first find already saved categories
+            $categories = Category::all(array("property = ?" => "user", "property_id = ?" => $user->id));
+            foreach ($categories as $cat) {
+                $position = array_search($cat->skill_id, $getSkills);
+
+                if ($position !== FALSE) {
+                    unset($getSkills[$position]);   // skill is already saved so no need to save it
+                    if (!$cat->live) {
+                        $cat->live = true;
+                        $cat->save();
+                    }
+                } else { // skill saved in db but not in the updated list submitted by user
+                    $cat->live = false;
+                    $cat->save();
+                }
+            }
+
+            // then save any remaining new categories
+            foreach ($getSkills as $skill) {
+                $category = new Category(array(
+                    "skill_id" => $skill,
+                    "property" => "user",
+                    "property_id" => $user->id
+                ));
+                $category->save();
+            }
+            $view->set("success", true);
+        }
+
+        $view->set("skills", $skills);
+        $view->set("user", $user);
+    }
+
+    /**
+     * @before _secure, changeLayout
+     */
+    public function organizations() {
+        $view = $this->getActionView();
+
+        $member = Member::all(array("user_id = ?" => $this->user->id));
+        $organizations = array();
+
+        foreach ($member as $m) {
+            $org = Organization::first(array("id = ?" => $m->organization_id));
+
+            $organizations[] = array(
+                "id" => $org->id,
+                "name" => $org->name,
+                "website" => $org->website,
+                "country" => $org->country,
+                "designation" => $m->designation
+            );
+        }
+
+        $organizations = (!empty($organizations)) ? ArrayMethods::toObject($organizations) : array();
+        $view->set("organizations", $organizations);
+    }
+
+    /**
+     * @before _secure, changeLayout
+     */
+    public function addOrg($id="") {
+        $view = $this->getActionView();
+        $org = Organization::first(array("id = ?" => $id));
+        $member = Member::first(array("user_id = ?" => $this->user->id, "organization_id = ?" => $id));
+
+        if (RequestMethods::post("action") == "saveOrg") {
+            if (!$org) {
+                $org = new Organization(array());
+                $member = new Member(array("user_id" => $this->user->id));
+            }
+            $org->name = RequestMethods::post("name");
+            $org->website = RequestMethods::post("website");
+            $org->country = RequestMethods::post("country");
+            $org->save();
+
+            $member->organization_id = $org->id;
+            $member->designation = RequestMethods::post("designation");
+            $member->save();
+
+            $view->set("success", true);
+        }
+        $view->set("designation", $member->designation);
+        $view->set("org", $org);
     }
 
     public function changeLayout() {

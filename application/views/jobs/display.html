@@ -1,0 +1,63 @@
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header text-center">Job Summary</h1>
+                <h2 class="page-heading">Job Details</h2>
+                <div class="panel panel-default">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Job Type:</strong></td>
+                                <td>{echo ucfirst($job->type)}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Budget:</strong></td>
+                                <td>{echo $job->budget}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Skills:</strong></td>
+                                <td>
+                                    {foreach $cat in $categories}
+                                    {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
+                                    <a href="#">{echo $skill->name}</a>,
+                                    {/foreach}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Details:</strong></td>
+                                <td>{echo $job->details}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-heading">Buyer Details</h2>
+                <div class="panel">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>User:</strong></td>
+                                <td>{echo $user->username}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Location:</strong></td>
+                                <td>{echo $user->location}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Member:</strong></td>
+                                <td>
+                                    {script $unixdatetme = strtotime($user->created)}
+                                    {echo strftime("%B %d, %Y", $unixdatetme)}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

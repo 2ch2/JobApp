@@ -21,7 +21,9 @@
                             {script $i = 1} {foreach $job in $jobs}
                             <tr>
                                 <td>{echo $i}</td>
-                                <td>{echo $job->title}</td>
+                                <td>
+                                    <a href="/jobs/display/{echo $job->title}/{echo $job->id}">{echo $job->title}</a>
+                                </td>
                                 <td>{echo $job->details}</td>
                                 <td>{echo $job->type}</td>
                                 <td>{echo $job->status}</td>

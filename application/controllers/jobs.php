@@ -81,4 +81,20 @@ class Jobs extends Users {
 
         $view->set("job", $job);
     }
+
+    public function display($name, $id) {
+        if (empty($id)) {
+            self::redirect("/");
+        }
+
+        $view = $this->getActionView();
+
+        $job = Job::first(array("id = ?" => $id));
+        $user = User::first(array("id = ?" => $job->user_id));
+        $categories = Category::all(array("property = ?" => "job", "property_id = ?" => $job->id));
+
+        $view->set("job", $job);
+        $view->set("user", $user);
+        $view->set("categories", $categories);
+    }
 }

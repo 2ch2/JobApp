@@ -60,8 +60,7 @@ class Users extends Controller {
                 "password" => $this->encrypt($password),
                 "location" => RequestMethods::post("location", ""),
                 "live" => true,
-                "deleted" => false,
-                "modified" => "00-00-00 00:00:00"
+                "deleted" => false
             ));
 
             if (RequestMethods::post("confirm") != $password) {
@@ -228,6 +227,21 @@ class Users extends Controller {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Finds the average rating of user based on the projects
+     * @param array $ratingObj array of review objects
+     */
+    protected function rating($ratingObj) {
+        $rating = 0; $i = 1;
+        foreach ($ratingObj as $review) {
+            $rating += $review->rating;
+            $i++;
+        }
+
+        $average = ($rating === 0) ? "User not reviewed yet" : $rating/$i;
+        return $average;
     }
 
 }

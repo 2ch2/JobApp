@@ -18,9 +18,11 @@
                             <tr>
                                 <td><strong>Skills:</strong></td>
                                 <td>
+                                    {script $count = count($categories)} {script $i = 1}
                                     {foreach $cat in $categories}
-                                    {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
-                                    <a href="#">{echo $skill->name}</a>,
+                                        {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
+                                        <a href="/jobs/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
+                                        {script $i++}
                                     {/foreach}
                                 </td>
                             </tr>
@@ -48,7 +50,7 @@
                                 <td>{echo $user->location}</td>
                             </tr>
                             <tr>
-                                <td><strong>Member:</strong></td>
+                                <td><strong>Joined:</strong></td>
                                 <td>
                                     {script $unixdatetme = strtotime($user->created)}
                                     {echo strftime("%B %d, %Y", $unixdatetme)}
@@ -58,6 +60,42 @@
                     </table>
                 </div>
             </div>
+        </div>
+        
+        <div class="row">
+            {if !empty($bids)}
+            <div class="col-sm-12 page-content col-thin-right">
+                <div class="inner-box category-content">
+                    <h2 class="title-2">Bids</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>User</th>
+                                <th>Location</th>
+                                <th>Bid Amount</th>
+                                <th>Rating</th>
+                                <th>Delivery Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {script $i = 1}
+                           {foreach $bid in $bids}
+                            <tr>
+                                <td>{echo $i}</td>
+                                <td>{echo $bid->user}</td>
+                                <td>{echo $bid->user_location}</td>
+                                <td>${echo $bid->amount}</td>
+                                <td>{echo $bid->user_rating}</td>
+                                <td>{echo $bid->delivery_time}</td>
+                            </tr>
+                            {script $i++} {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {/if}
+            <h2><a href="/jobs/bid/{echo $job->id}"><i class="fa fa-plus"> Place Bid</i></a></h2>
         </div>
     </div>
 </div>

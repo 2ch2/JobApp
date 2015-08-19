@@ -56,7 +56,10 @@
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-2">
                                             <label>Budget</label>
-                                            <input id="budget" name="budget" type="text" pattern="[0-9]{2,}" placeholder="Place a budget for the project.." class="form-control" required>
+                                            <div class="form-group">
+                                            <input id="start" name="min" type="text" pattern="[0-9]{2,}" placeholder="Minimum amount of project in dollars.." class="form-control" required> To
+                                            <input id="budget" name="max" type="text" pattern="[0-9]{2,}" placeholder="Maximum amount of project in dollars" class="form-control" required>
+                                            <div class="form-group">
                                         </div>
                                     </div>
                                 </div>

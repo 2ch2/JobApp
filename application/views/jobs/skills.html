@@ -80,9 +80,8 @@
                                     <td>${echo $job->budget}</td>
                                 {/else}
                                 <td>
-                                    {script $jobCat = Category::all(array("property = ?" => "job", "property_id = ?" => $job->id))}
-                                    {script $count = count($jobCat)} {script $i = 1}
-                                    {foreach $cat in $jobCat}
+                                    {script $count = count($job->categories)} {script $i = 1}
+                                    {foreach $cat in $job->categories}
                                         {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
                                         <a href="/jobs/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
                                         {script $i++}

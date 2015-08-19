@@ -17,7 +17,12 @@
     </head>
     <body>
         <div id="wrapper">
-            {include navigation/public.html}
+            {if ($user)}
+                {include navigation/user.html}
+            {/if}
+            {else}
+                {include navigation/public.html}
+            {/else}
             {ayield action}
 
             <div class="page-bottom-info">

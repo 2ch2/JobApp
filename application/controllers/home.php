@@ -10,7 +10,10 @@ use Shared\Controller as Controller;
 class Home extends Controller {
 
     public function index() {
-        
+        $view = $this->getActionView();
+
+        $jobs = Job::all(array());
+        $view->set("jobs", $jobs);
     }
 
     public function about() {

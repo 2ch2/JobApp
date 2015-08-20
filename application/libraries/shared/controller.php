@@ -18,6 +18,15 @@ namespace Shared {
          * @readwrite
          */
         protected $_user;
+        
+        /**
+         * @protected
+         */
+        public function _admin() {
+            if (!$this->user->admin) {
+                throw new Router\Exception\Controller("Not a valid admin user account");
+            }
+        }
 
         public function noview() {
             $this->willRenderLayoutView = false;
@@ -35,7 +44,7 @@ namespace Shared {
         public function _secure() {
             $user = $this->getUser();
             if (!$user) {
-                header("Location: /login.html");
+                header("Location: /login");
                 exit();
             }
         }

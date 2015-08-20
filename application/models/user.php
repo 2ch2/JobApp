@@ -61,4 +61,11 @@ class User extends Shared\Model {
      * @label location
      */
     protected $_location;
+    
+        /**
+    * @column
+    * @readwrite
+    * @type boolean
+    */
+    protected $_admin = false;
 }

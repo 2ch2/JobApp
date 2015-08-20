@@ -20,8 +20,9 @@ class Users extends Controller {
     }
 
     public function login() {
-        if ($this->user)
-            self::redirect("/users/");
+        if ($this->user){
+            self::redirect("/users");
+        }
         $view = $this->getActionView();
 
         if (RequestMethods::post("action") == "login") {
@@ -46,8 +47,9 @@ class Users extends Controller {
     }
 
     public function signup() {
-        if ($this->user)
+        if ($this->user) {
             self::redirect("/users/");
+        }
         $view = $this->getActionView();
 
         if (RequestMethods::post("action") == "signUp") {
@@ -59,6 +61,7 @@ class Users extends Controller {
                 "email" => RequestMethods::post("email"),
                 "password" => $this->encrypt($password),
                 "location" => RequestMethods::post("location", ""),
+                "admin" => false,
                 "live" => true,
                 "deleted" => false
             ));

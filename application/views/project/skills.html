@@ -64,7 +64,7 @@
                             <tr>
                                 <td>{echo $i}</td>
                                 <td>
-                                    <a href="/jobs/display/{echo urlencode($job->title)}/{echo $job->id}">{echo $job->title}</a>
+                                    <a href="/project/display/{echo urlencode($job->title)}/{echo $job->id}">{echo $job->title}</a>
                                 </td>
                                 <td>{echo $job->type}</td>
                                 {if (!empty($bids))}
@@ -83,7 +83,7 @@
                                     {script $count = count($job->categories)} {script $i = 1}
                                     {foreach $cat in $job->categories}
                                         {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
-                                        <a href="/jobs/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
+                                        <a href="/project/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
                                         {script $i++}
                                     {/foreach}
                                 </td>

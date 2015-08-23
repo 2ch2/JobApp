@@ -21,7 +21,7 @@
                                     {script $count = count($categories)} {script $i = 1}
                                     {foreach $cat in $categories}
                                         {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
-                                        <a href="/jobs/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
+                                        <a href="/project/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
                                         {script $i++}
                                     {/foreach}
                                 </td>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             {/if}
-            <h2><a href="/jobs/bid/{echo $job->id}"><i class="fa fa-plus"> Place Bid</i></a></h2>
+            <h2><a href="/project/bid/{echo $job->id}"><i class="fa fa-plus"> Place Bid</i></a></h2>
         </div>
     </div>
 </div>

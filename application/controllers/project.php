@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Jobs Controller: Handles job posting/reviewing etc
+ * Project Controller: Handles project posting/reviewing etc
  *
  * @author Hemant Mann
  */
@@ -9,7 +9,7 @@ use Framework\RequestMethods as RequestMethods;
 use Framework\ArrayMethods as ArrayMethods;
 use Framework\Registry as Registry;
 
-class Jobs extends Users {
+class Project extends Users {
     
     /**
      * @before _secure, changeLayout

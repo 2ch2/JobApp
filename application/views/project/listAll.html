@@ -22,7 +22,7 @@
                             <tr>
                                 <td>{echo $i}</td>
                                 <td>
-                                    <a href="/jobs/display/{echo $job->title}/{echo $job->id}">{echo $job->title}</a>
+                                    <a href="/project/display/{echo $job->title}/{echo $job->id}">{echo $job->title}</a>
                                 </td>
                                 <td>{echo $job->details}</td>
                                 <td>{echo $job->type}</td>
@@ -30,7 +30,7 @@
                                 <td>${echo $job->budget}</td>
                                 <td>No. of Days = {echo $job->time}</td>
                                 <td>
-                                    <a href="/jobs/edit/{$job->id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>&nbsp;
+                                    <a href="/project/edit/{$job->id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>&nbsp;
                                 </td>
                             </tr>
                             {script $i++} {/foreach}

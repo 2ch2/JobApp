@@ -8,36 +8,36 @@
                         <div class="col-md-4 col-sm-4 ">
                             <div class="cat-list">
                                 <h3 class="cat-title">
-                                    <a href="/jobs/skills/web"><i class="fa fa-code ln-shadow"></i> Web</a>
+                                    <a href="/project/skills/web"><i class="fa fa-code ln-shadow"></i> Web</a>
                                 </h3>
                                 <ul class="cat-collapse collapse in cat-id-3">
-                                    <li> <a href="/jobs/skills/php">PHP</a></li>
-                                    <li> <a href="/jobs/skills/mean">MEAN Stack</a></li>
-                                    <li> <a href="/jobs/skills/python">Python </a></li>
+                                    <li> <a href="/project/skills/php">PHP</a></li>
+                                    <li> <a href="/project/skills/mean">MEAN Stack</a></li>
+                                    <li> <a href="/project/skills/python">Python </a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="cat-list">
                                 <h3 class="cat-title">
-                                    <a href="/jobs/skills/mobile"><i class="fa fa-tablet"></i> Mobile</a>
+                                    <a href="/project/skills/mobile"><i class="fa fa-tablet"></i> Mobile</a>
                                 </h3>
                                 <ul class="cat-collapse collapse in cat-id-6">
-                                    <li> <a href="/jobs/skills/android">Android</a> </li>
-                                    <li> <a href="/jobs/skills/ios">iOS</a> </li>
-                                    <li> <a href="/jobs/skills/windows">Windows</a> </li>
+                                    <li> <a href="/project/skills/android">Android</a> </li>
+                                    <li> <a href="/project/skills/ios">iOS</a> </li>
+                                    <li> <a href="/project/skills/windows">Windows</a> </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4   last-column">
                             <div class="cat-list ">
                                 <h3 class="cat-title">
-                                    <a href="/jobs/skills/design"><i class="fa fa-picture-o ln-shadow"></i> Design </a>
+                                    <a href="/project/skills/design"><i class="fa fa-picture-o ln-shadow"></i> Design </a>
                                 </h3>
                                 <ul class="cat-collapse collapse in cat-id-8">
-                                    <li> <a href="/jobs/skills/photoshop">Photoshop </a> </li>
-                                    <li> <a href="/jobs/skills/posters">Posters </a> </li>
-                                    <li> <a href="/jobs/skills/logo">LOGO </a> </li>
+                                    <li> <a href="/project/skills/photoshop">Photoshop </a> </li>
+                                    <li> <a href="/project/skills/posters">Posters </a> </li>
+                                    <li> <a href="/project/skills/logo">LOGO </a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             <tr>
                                 <td>{echo $i}</td>
                                 <td>
-                                    <a href="/jobs/display/{echo urlencode($job->title)}/{echo $job->id}">{echo $job->title}</a>
+                                    <a href="/project/display/{echo urlencode($job->title)}/{echo $job->id}">{echo $job->title}</a>
                                 </td>
                                 <td>{echo $job->type}</td>
                                 {if (!empty($bids))}
@@ -86,7 +86,7 @@
                                     {script $count = count($jobCat)} {script $i = 1}
                                     {foreach $cat in $jobCat}
                                         {script $skill = Skill::first(array("id = ?" => $cat->skill_id), array("id", "name"))}
-                                        <a href="/jobs/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
+                                        <a href="/project/skills/{echo urlencode($skill->name)}">{echo $skill->name}</a>{if ($i < $count)}, {/if}
                                         {script $i++}
                                     {/foreach}
                                 </td>

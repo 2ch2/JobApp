@@ -55,7 +55,7 @@ $routes = array(
     ),
     array(
         "pattern" => "project/add",
-        "controller" => "jobs",
+        "controller" => "project",
         "action" => "create"
     )
 );

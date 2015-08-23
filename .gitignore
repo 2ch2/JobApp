@@ -42,5 +42,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /nbproject/
-ftpsync.settings
 logs/
+
+# Files not to be included in commit
+/application/configuration/database.ini
+sftp-config.json
+ftpsync.settings
